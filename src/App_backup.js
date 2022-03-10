@@ -1,5 +1,4 @@
 import React from 'react';
-import Search from './components/Search';
 import * as api from './services/api';
 
 class App extends React.Component {
@@ -16,9 +15,7 @@ class App extends React.Component {
   render() {
     const { categories, loading } = this.state;
     return (
-      <div className="content">
-      <Search />
-      <div className="categories">
+      <div className="">
         { loading
           ? <span>Carregando...</span>
           : categories.map((element) => {
@@ -26,7 +23,6 @@ class App extends React.Component {
             <p key={element.id}>{element.name}</p>
           )})
         }
-      </div>
       </div>
     );
   }
