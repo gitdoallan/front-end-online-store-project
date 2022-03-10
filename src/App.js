@@ -1,6 +1,10 @@
 import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import ShoppingCart from './pages/ShoppingCart';
 import Search from './components/Search';
+import Header from './components/Header';
 import * as api from './services/api';
+import './App.css';
 
 class App extends React.Component {
   constructor() {
@@ -17,7 +21,17 @@ class App extends React.Component {
     const { categories, loading } = this.state;
     return (
       <div className="content">
-      <Search />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" render={ () => (
+              <>
+              <Header />
+              <Search />
+              </> )} />
+
+            <Route exact path="/shopping-cart" component={ ShoppingCart } />
+          </Switch>
+        </BrowserRouter>
       <div className="categories">
         { loading
           ? <span>Carregando...</span>
