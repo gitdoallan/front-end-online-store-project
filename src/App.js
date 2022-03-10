@@ -27,20 +27,20 @@ class App extends React.Component {
               <>
               <Header />
               <Search />
+              <div className="categories">
+                { loading
+                  ? <span>Carregando...</span>
+                  : categories.map((element) => {
+                    return (
+                    <p data-testid="category" key={element.id}>{element.name}</p>
+                  )})
+                }
+              </div>
               </> )} />
 
             <Route exact path="/shopping-cart" component={ ShoppingCart } />
           </Switch>
         </BrowserRouter>
-      <div className="categories">
-        { loading
-          ? <span>Carregando...</span>
-          : categories.map((element) => {
-            return (
-            <p key={element.id}>{element.name}</p>
-          )})
-        }
-      </div>
       </div>
     );
   }
