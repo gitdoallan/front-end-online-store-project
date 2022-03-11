@@ -8,6 +8,13 @@ export async function getCategories() {
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
   const catAndQuery = await fetch(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`)
     .then((element) => element.json())
-    .catch(() => 'Não foi possível carregar as categorias');
+    .catch(() => 'Não foi possível carregar');
   return catAndQuery;
+}
+
+export async function getProductDetails(query) {
+  const getDetails = await fetch(`https://api.mercadolibre.com/items/${query}`)
+    .then((element) => element.json())
+    .catch(() => 'Não foi possível carregar os detalhes');
+  return getDetails;
 }

@@ -4,15 +4,9 @@ import ShoppingCart from './pages/ShoppingCart';
 import Search from './components/Search';
 import Header from './components/Header';
 import './App.css';
+import ProductDetails from './pages/ProductDetails';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      loading: true,
-    };
-  }
-
   render() {
     return (
       <div className="content">
@@ -24,7 +18,16 @@ class App extends React.Component {
               render={ () => (
                 <>
                   <Header />
-                  <Search searchInput={ this.searchInput } />
+                  <Search />
+                </>) }
+            />
+
+            <Route
+              path="/product/:id"
+              render={ (props) => (
+                <>
+                  <Header />
+                  <ProductDetails { ...props } />
                 </>) }
             />
 

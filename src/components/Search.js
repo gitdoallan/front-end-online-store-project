@@ -42,7 +42,8 @@ export default class Search extends React.Component {
   }
 
   render() {
-    const { inputValue, loading, loadingCat, dataResults, initialMessage, categories } = this.state;
+    const { inputValue, loading, loadingCat,
+      dataResults, initialMessage, categories } = this.state;
     return (
       <>
         <form onSubmit={ this.searchInput }>
@@ -67,7 +68,10 @@ export default class Search extends React.Component {
                 : (
                   dataResults.map((element) => (
                     <div data-testid="product" key={ element.id }>
-                      <Link data-testid="product-detail-link" to={ `/product/${element.id}` }>
+                      <Link
+                        data-testid="product-detail-link"
+                        to={ `/product/${element.id}` }
+                      >
                         <img alt={ element.title } src={ element.thumbnail } />
                         <h3 data-testid="product-detail-name">{element.title}</h3>
                       </Link>
@@ -85,7 +89,15 @@ export default class Search extends React.Component {
           { loadingCat
             ? <span>Carregando...</span>
             : categories.map((element) => (
-              <button type="button" id={ element.id } onClick={ this.onBtnClick } data-testid="category" key={ element.id }>{element.name}</button>
+              <button
+                type="button"
+                id={ element.id }
+                onClick={ this.onBtnClick }
+                data-testid="category"
+                key={ element.id }
+              >
+                {element.name}
+              </button>
             ))}
         </div>
       </>
