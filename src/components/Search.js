@@ -67,7 +67,7 @@ export default class Search extends React.Component {
                 : (
                   dataResults.map((element) => (
                     <div data-testid="product" key={ element.id }>
-                      <Link data-testid="product-detail-link" to={`/product/${element.id}`}>
+                      <Link data-testid="product-detail-link" to={ `/product/${element.id}` }>
                         <img alt={ element.title } src={ element.thumbnail } />
                         <h3 data-testid="product-detail-name">{element.title}</h3>
                       </Link>
