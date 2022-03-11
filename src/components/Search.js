@@ -7,12 +7,26 @@ export default class Search extends React.Component {
     this.state = {
       inputValue: '',
       category: '',
+      categories: [],
       dataResults: [],
       initialMessage: true,
       loading: false,
-    }
+      loadingCat: true,
+    };
     this.onInputChange = this.onInputChange.bind(this);
     this.searchInput = this.searchInput.bind(this);
+    this.onBtnClick = this.onBtnClick.bind(this);
+  }
+
+  componentDidMount() {
+    api.getCategories().then((listCategories) => {
+      this.setState({ categories: listCategories, loadingCat: false });
+    });
+  }
+
+  onBtnClick(e) {
+    this.setState({ category: e.target.id });
+    this.searchInput(e);
   }
 
   onInputChange(e) {
@@ -28,39 +42,50 @@ export default class Search extends React.Component {
   }
 
   render() {
-    const { inputValue, loading, dataResults, initialMessage } = this.state;
-    console.log(dataResults);
+    const { inputValue, loading, loadingCat, dataResults, initialMessage, categories } = this.state;
     return (
       <>
         <form onSubmit={ this.searchInput }>
-          <input data-testid="query-input" type="text" value={ inputValue } onChange={this.onInputChange} />
+          <input
+            data-testid="query-input"
+            type="text"
+            value={ inputValue }
+            onChange={ this.onInputChange }
+          />
           <button type="submit" data-testid="query-button">Buscar</button>
         </form>
         { initialMessage
           ? (
-              <p data-testid="home-initial-message">
-                Digite algum termo de pesquisa ou escolha uma categoria.
-              </p>
+            <p data-testid="home-initial-message">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </p>
           )
           : (
             <div className="results">
               { loading
                 ? <span>Carregando...</span>
                 : (
-                  dataResults.map((element) => {
-                    return (
-                      <div data-testid="product" key={element.id}>
-                        <img alt={element.title} src={element.thumbnail} />
-                        <h3>{element.title}</h3>
-                        <p>Preço: {element.price}</p>
-                      </div>
-                    );
-                  })
-                )
-              }
+                  dataResults.map((element) => (
+                    <div data-testid="product" key={ element.id }>
+                      <img alt={ element.title } src={ element.thumbnail } />
+                      <h3>{element.title}</h3>
+                      <p>
+                        Preço:
+                        {element.price}
+                      </p>
+                    </div>
+                  ))
+                )}
             </div>
-          )
-        }
+          )}
+
+        <div className="categories">
+          { loadingCat
+            ? <span>Carregando...</span>
+            : categories.map((element) => (
+              <button type="button" id={ element.id } onClick={ this.onBtnClick } data-testid="category" key={ element.id }>{element.name}</button>
+            ))}
+        </div>
       </>
     );
   }
