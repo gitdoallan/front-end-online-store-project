@@ -7,6 +7,19 @@ import './App.css';
 import ProductDetails from './pages/ProductDetails';
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      addedToCart: [],
+    }
+    this.addToCart = this.addToCart.bind(this);
+  }
+
+  addToCart(id) {
+    const { addedToCart } = this.state;
+    this.setState({ addedToCart: [...addedToCart, id] });
+  }
+
   render() {
     return (
       <div className="content">
@@ -18,7 +31,7 @@ class App extends React.Component {
               render={ () => (
                 <>
                   <Header />
-                  <Search />
+                  <Search addToCart={ this.addToCart } />
                 </>) }
             />
 
@@ -27,11 +40,20 @@ class App extends React.Component {
               render={ (props) => (
                 <>
                   <Header />
-                  <ProductDetails { ...props } />
+                  <ProductDetails { ...props } addToCart={ this.addToCart } />
                 </>) }
             />
 
-            <Route exact path="/shopping-cart" component={ ShoppingCart } />
+            <Route
+              exact
+              path="/shopping-cart"
+              render={ () => (
+                <>
+                  <Header />
+                  <ShoppingCart {...this.state} />
+                </>) }
+            />
+
           </Switch>
         </BrowserRouter>
       </div>
