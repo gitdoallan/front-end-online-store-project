@@ -25,6 +25,7 @@ export default class ProductDetails extends React.Component {
 
   render() {
     const { title, thumbnail, price, id } = this.state;
+    const { addToCart } = this.props;
     return (
       <div className="product-details">
         <h3 data-testid="product-detail-name">{title}</h3>
@@ -37,6 +38,12 @@ export default class ProductDetails extends React.Component {
           Detalhes:
           {id}
         </p>
+        <button
+          data-testid="product-add-to-cart"
+          type="button"
+          onClick={() => addToCart(id)}>
+            Adicionar ao carrinho
+        </button>
       </div>
     );
   }

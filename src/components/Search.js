@@ -44,6 +44,7 @@ export default class Search extends React.Component {
   render() {
     const { inputValue, loading, loadingCat,
       dataResults, initialMessage, categories } = this.state;
+    const { addToCart } = this.props;
     return (
       <>
         <form onSubmit={ this.searchInput }>
@@ -79,6 +80,12 @@ export default class Search extends React.Component {
                         Preço:
                         {element.price}
                       </p>
+                      <button
+                        data-testid="product-add-to-cart"
+                        type="button"
+                        onClick={() => addToCart(element.id)}>
+                          Adicionar ao carrinho
+                      </button>
                     </div>
                   ))
                 )}
