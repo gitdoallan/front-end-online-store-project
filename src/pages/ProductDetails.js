@@ -39,10 +39,11 @@ export default class ProductDetails extends React.Component {
           {id}
         </p>
         <button
-          data-testid="product-add-to-cart"
+          data-testid="product-detail-add-to-cart"
           type="button"
-          onClick={() => addToCart(id)}>
-            Adicionar ao carrinho
+          onClick={ () => addToCart(id) }
+        >
+          Adicionar ao carrinho
         </button>
       </div>
     );
