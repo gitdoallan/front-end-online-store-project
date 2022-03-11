@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 
 export default class Search extends React.Component {
@@ -25,8 +26,7 @@ export default class Search extends React.Component {
   }
 
   onBtnClick(e) {
-    this.setState({ category: e.target.id });
-    this.searchInput(e);
+    this.setState({ category: e.target.id }, () => this.searchInput(e));
   }
 
   onInputChange(e) {
@@ -67,8 +67,10 @@ export default class Search extends React.Component {
                 : (
                   dataResults.map((element) => (
                     <div data-testid="product" key={ element.id }>
-                      <img alt={ element.title } src={ element.thumbnail } />
-                      <h3>{element.title}</h3>
+                      <Link data-testid="product-detail-link" to={`/product/${element.id}`}>
+                        <img alt={ element.title } src={ element.thumbnail } />
+                        <h3 data-testid="product-detail-name">{element.title}</h3>
+                      </Link>
                       <p>
                         Preço:
                         {element.price}
