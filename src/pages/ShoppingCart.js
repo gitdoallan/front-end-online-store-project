@@ -36,7 +36,7 @@ export default class ShoppingCart extends React.Component {
     const findProduct = productQty.find((element) => element.id === id);
     const index = productQty.indexOf(findProduct);
     console.log(findProduct);
-    console.log(index);
+    console.log(index); 
     this.setState((prevState) => [ {
         productQty: [...prevState.productQty,
           { [findProduct.id] : prevState.productQty[index][id] + 1 } ]
