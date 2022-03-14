@@ -11,7 +11,7 @@ class App extends React.Component {
     super();
     this.state = {
       addedToCart: [],
-    }
+    };
     this.addToCart = this.addToCart.bind(this);
   }
 
@@ -50,7 +50,7 @@ class App extends React.Component {
               render={ () => (
                 <>
                   <Header />
-                  <ShoppingCart {...this.state} />
+                  <ShoppingCart { ...this.state } />
                 </>) }
             />
 
