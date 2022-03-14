@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 export default class ShoppingCart extends React.Component {
@@ -10,16 +11,17 @@ export default class ShoppingCart extends React.Component {
     this.initialState = this.initialState.bind(this);
   }
 
+  componentDidMount() {
+    this.initialState();
+  }
+
   initialState() {
     const { addedToCart } = this.props;
     addedToCart.forEach(async (id) => {
       const result = await api.getProductDetails(id);
-      this.setState((previousState) => ({ products: [...previousState.products, result] }));
+      this.setState((previousState) => ({ products:
+        [...previousState.products, result] }));
     });
-  }
-
-  componentDidMount() {
-    this.initialState();
   }
 
   render() {
@@ -44,3 +46,6 @@ export default class ShoppingCart extends React.Component {
     );
   }
 }
+ShoppingCart.propTypes = {
+  addedToCart: PropTypes.arrayOf(PropTypes.any).isRequired,
+};
