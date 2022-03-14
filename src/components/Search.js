@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 export default class Search extends React.Component {
@@ -112,3 +113,7 @@ export default class Search extends React.Component {
     );
   }
 }
+
+Search.propTypes = {
+  addToCart: PropTypes.arrayOf(PropTypes.any).isRequired,
+};
