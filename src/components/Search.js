@@ -83,8 +83,9 @@ export default class Search extends React.Component {
                       <button
                         data-testid="product-add-to-cart"
                         type="button"
-                        onClick={() => addToCart(element.id)}>
-                          Adicionar ao carrinho
+                        onClick={ () => addToCart(element.id) }
+                      >
+                        Adicionar ao carrinho
                       </button>
                     </div>
                   ))
