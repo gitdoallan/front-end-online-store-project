@@ -6,39 +6,40 @@ export default class ShoppingCart extends React.Component {
     super();
     this.state = {
       products: [],
-    }
+    };
     this.initialState = this.initialState.bind(this);
   }
 
   initialState() {
-    const { addedToCart } = this.props
-    addedToCart.forEach( async (id) => {
+    const { addedToCart } = this.props;
+    addedToCart.forEach(async (id) => {
       const result = await api.getProductDetails(id);
-      this.setState((previousState) => ({ products: [...previousState.products, result]}));
-    })
+      this.setState((previousState) => ({ products: [...previousState.products, result] }));
+    });
   }
 
-  componentDidMount()  {
+  componentDidMount() {
     this.initialState();
   }
+
   render() {
     const { products } = this.state;
     console.log(products);
     return (
       <div className="cart-products">
         {products.length === 0
-        ? <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>
-        : products.map((element) => {
-          return (
-            <div key={element.id} className="product">
+          ? <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>
+          : products.map((element) => (
+            <div key={ element.id } className="product">
               <h3 data-testid="shopping-cart-product-name">{element.title}</h3>
-              <img alt={element.title} src={element.thumbnail}></img>
-              <p>Preço: {element.price}</p>
+              <img alt={ element.title } src={ element.thumbnail } />
+              <p>
+                Preço:
+                {element.price}
+              </p>
               <p data-testid="shopping-cart-product-quantity">1</p>
             </div>
-          );
-        })
-        }
+          ))}
       </div>
     );
   }
