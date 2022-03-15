@@ -1,4 +1,5 @@
 import React from 'react';
+
 import PropType from 'prop-types';
 
 export default class ShoppingCart extends React.Component {
@@ -71,6 +72,7 @@ export default class ShoppingCart extends React.Component {
   //   saveCartItems(products);
   //   saveCounter(counter);
   // }
+
   render() {
     const { counter, loading } = this.state;
     const { addedToCart } = this.props;
@@ -124,7 +126,6 @@ export default class ShoppingCart extends React.Component {
               ))
             )
         }
-
       </div>
     );
   }

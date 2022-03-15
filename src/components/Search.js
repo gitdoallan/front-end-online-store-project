@@ -1,6 +1,7 @@
 import React from 'react';
 import PropType from 'prop-types';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 export default class Search extends React.Component {
