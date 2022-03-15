@@ -15,9 +15,8 @@ class App extends React.Component {
     this.addToCart = this.addToCart.bind(this);
   }
 
-  addToCart(id) {
-    const { addedToCart } = this.state;
-    this.setState({ addedToCart: [...addedToCart, id] });
+  addToCart(infos) {
+    this.setState(({ addedToCart }) => ({ addedToCart: [...addedToCart, infos] }));
   }
 
   render() {

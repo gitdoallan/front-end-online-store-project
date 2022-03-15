@@ -1,14 +1,10 @@
 import React from 'react';
 import PropType from 'prop-types';
-import * as api from '../services/api';
-import { saveCartItems,
-  getSavedCartItems, getSavedCounter, saveCounter } from '../services/localStorage';
 
 export default class ShoppingCart extends React.Component {
   constructor() {
     super();
     this.state = {
-      products: [],
       counter: {},
       loading: false,
     };
@@ -21,9 +17,9 @@ export default class ShoppingCart extends React.Component {
   // componentDidMount() {
   //   this.initialState();
   // }
-  componentDidMount() {
-    console.log(this.props.addedToCart);
-  }
+  // componentDidMount() {
+  //   console.log(this.props.addedToCart);
+  // }
 
   // initialState() {
   //   const { addedToCart } = this.props;
@@ -76,7 +72,7 @@ export default class ShoppingCart extends React.Component {
   //   saveCounter(counter);
   // }
   render() {
-    const { products, counter, loading } = this.state;
+    const { counter, loading } = this.state;
     const { addedToCart } = this.props;
 
     return (

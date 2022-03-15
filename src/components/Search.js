@@ -1,4 +1,5 @@
 import React from 'react';
+import PropType from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as api from '../services/api';
 
@@ -83,7 +84,7 @@ export default class Search extends React.Component {
                       <button
                         data-testid="product-add-to-cart"
                         type="button"
-                        onClick={ () => addToCart(element.id) }
+                        onClick={ () => addToCart({ ...element, qty: 1 }) }
                       >
                         Adicionar ao carrinho
                       </button>
@@ -112,3 +113,7 @@ export default class Search extends React.Component {
     );
   }
 }
+
+Search.propTypes = {
+  addToCart: PropType.func.isRequired,
+};

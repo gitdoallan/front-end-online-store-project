@@ -51,6 +51,7 @@ export default class ProductDetails extends React.Component {
 }
 
 ProductDetails.propTypes = {
+  addToCart: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
